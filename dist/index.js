@@ -7,13 +7,14 @@ const build = async (options, stream) => {
     stream.emit('bundle', bundle);
     const { output } = await bundle.generate(options.output);
     for (const chunk of output) {
-        console.log("chunk",chunk.type);
+        console.log("chunk",chunk.map);
         if (chunk.type === 'asset') {
             stream.push(chunk.source);
         }
         else {
             stream.push(chunk.code);
             if (chunk.map) {
+                console.log("chunk.map",chunk.code,chunk.map);
                 stream.push(`\n//# sourceMappingURL=${chunk.map.toUrl()}`);
             }
         }
