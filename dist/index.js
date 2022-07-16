@@ -7,7 +7,7 @@ const build = async (options, stream) => {
     stream.emit('bundle', bundle);
     const { output } = await bundle.generate(options.output);
     for (const chunk of output) {
-        console.log("chunk",chunk);
+        console.log("chunk",chunk.type);
         if (chunk.type === 'asset') {
             stream.push(chunk.source);
         }
