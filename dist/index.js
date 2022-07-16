@@ -14,7 +14,6 @@ const build = async (options, stream) => {
         else {
             stream.push(chunk.code);
             if (chunk.map) {
-                console.log("chunk.map",chunk.code,chunk.map);
                 stream.push(`\n//# sourceMappingURL=${chunk.map.toUrl()}`);
             }
         }
